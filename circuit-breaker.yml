@@ -1,0 +1,9 @@
+resilience4j:
+  circuitbreaker:
+    instances:
+      email-send:
+        failureRateThreshold: 50
+        minimumNumberOfCalls: 5
+        waitDurationInOpenState: 10000
+        slidingWindowSize: 10
+        permittedNumberOfCallsInHalfOpenState: 3
