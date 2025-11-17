@@ -5,6 +5,18 @@ spring:
   kafka:
     bootstrap-servers: localhost:9092
 
+    mail:
+    host: smtp.mail.ru
+    port: 587
+    username: ${MAIL_USERNAME}
+    password: ${MAIL_PASSWORD}
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
 springdoc:
   api-docs:
     path: /v3/api-docs
