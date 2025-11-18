@@ -1,20 +1,33 @@
 services:
-  services:
-    user-service:
-      url: http://localhost:8081
-    notification-service:
-      url: http://localhost:8082
+  user-service:
+    url: http://localhost:8081
+  notification-service:
+    url: http://localhost:8082
 
-spring:
-  cloud:
-    circuitbreaker:
-      resilience4j:
-        enabled: true
+resilience4j:
+  circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
+        minimum-number-of-calls: 2
+        permitted-number-of-calls-in-half-open-state: 2
+        sliding-window-type: COUNT_BASED
+        slow-call-duration-threshold: 30s
+        slow-call-rate-threshold: 50
+        automatic-transition-from-open-to-half-open-enabled: false
+    instances:
+      user-service:
+        base-config: default
+      notification-service:
+        base-config: default
 
 spring:
   webflux:
     client:
-      response-timeout: 10s
+      response-timeout: 30s
 
 server:
   port: 8084
