@@ -16,12 +16,7 @@ resilience4j:
         minimum-number-of-calls: 2
         permitted-number-of-calls-in-half-open-state: 2
         sliding-window-type: COUNT_BASED
-        # Отключаем таймауты для тестирования
         slow-call-duration-threshold: 60s
-        # Игнорируем только 4xx ошибки
-        ignore-exceptions:
-          - "org.springframework.web.reactive.function.client.WebClientResponseException\$NotFound"
-          - "org.springframework.web.reactive.function.client.WebClientResponseException\$BadRequest"
 
 logging:
   level:
