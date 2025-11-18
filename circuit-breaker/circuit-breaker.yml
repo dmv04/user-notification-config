@@ -7,18 +7,28 @@ services:
 
 resilience4j:
   circuitbreaker:
+    configs:
+      default:
+        register-health-indicator: true
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 10s
+        sliding-window-size: 5
+        minimum-number-of-calls: 2
+        permitted-number-of-calls-in-half-open-state: 2
+        sliding-window-type: COUNT_BASED
+        slow-call-duration-threshold: 5s
+        slow-call-rate-threshold: 50
+        ignore-exceptions: []
     instances:
       user-service:
-        failureRateThreshold: 50
-        waitDurationInOpenState: 30000
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 5
-        registerHealthIndicator: true
-      order-service:
-        failureRateThreshold: 50
-        waitDurationInOpenState: 30000
-        slidingWindowSize: 10
-        minimumNumberOfCalls: 5
+        base-config: default
+      notification-service:
+        base-config: default
+
+spring:
+  webflux:
+    client:
+      response-timeout: 10s
 
 server:
   port: 8084
