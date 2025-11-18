@@ -1,6 +1,3 @@
-server:
-  port: 8084
-
 services:
   user-service:
     url: http://localhost:8081
@@ -20,3 +17,6 @@ resilience4j.circuitbreaker:
       waitDurationInOpenState: 30000
       slidingWindowSize: 10
       minimumNumberOfCalls: 5
+      
+server:
+  port: 8084
