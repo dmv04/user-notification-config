@@ -5,23 +5,11 @@ services:
     notification-service:
       url: http://localhost:8082
 
-resilience4j:
-  circuitbreaker:
-    configs:
-      default:
-        register-health-indicator: true
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 5s
-        sliding-window-size: 5
-        minimum-number-of-calls: 2
-        permitted-number-of-calls-in-half-open-state: 2
-        sliding-window-type: COUNT_BASED
-        slow-call-duration-threshold: 60s
-
-logging:
-  level:
-    org.springframework.cloud.circuitbreaker: DEBUG
-    dev.dmv04.circuitbreaker: DEBUG
+spring:
+  cloud:
+    circuitbreaker:
+      resilience4j:
+        enabled: true
 
 spring:
   webflux:
