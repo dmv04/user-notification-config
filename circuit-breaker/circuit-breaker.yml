@@ -9,16 +9,10 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
-        register-health-indicator: true
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 10s
-        sliding-window-size: 5
-        minimum-number-of-calls: 2
-        permitted-number-of-calls-in-half-open-state: 2
-        sliding-window-type: COUNT_BASED
-        slow-call-duration-threshold: 30s
-        slow-call-rate-threshold: 50
-        automatic-transition-from-open-to-half-open-enabled: false
+        failureRateThreshold: 100
+        waitDurationInOpenState: 10000
+        slidingWindowSize: 2
+        minimumNumberOfCalls: 2
     instances:
       user-service:
         base-config: default
