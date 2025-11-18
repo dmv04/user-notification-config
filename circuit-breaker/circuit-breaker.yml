@@ -21,12 +21,7 @@ resilience4j:
         # Игнорируем только 4xx ошибки
         ignore-exceptions:
           - "org.springframework.web.reactive.function.client.WebClientResponseException\$NotFound"
-          - "org.springframework.web.reactive.function.client.WebClientResponseException\$BadRequest"
-    instances:
-      user-service:
-        base-config: default
-      notification-service:
-        base-config: default
+          - "org.springframework.web.reactive.function.client.WebClientResponseException\$BadRequest
 
 logging:
   level:
