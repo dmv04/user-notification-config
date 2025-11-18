@@ -11,19 +11,27 @@ resilience4j:
       default:
         register-health-indicator: true
         failure-rate-threshold: 50
-        wait-duration-in-open-state: 10s
+        wait-duration-in-open-state: 5s
         sliding-window-size: 5
         minimum-number-of-calls: 2
         permitted-number-of-calls-in-half-open-state: 2
         sliding-window-type: COUNT_BASED
-        slow-call-duration-threshold: 5s
-        slow-call-rate-threshold: 50
-        ignore-exceptions: []
+        # Отключаем таймауты для тестирования
+        slow-call-duration-threshold: 60s
+        # Игнорируем только 4xx ошибки
+        ignore-exceptions:
+          - "org.springframework.web.reactive.function.client.WebClientResponseException\$NotFound"
+          - "org.springframework.web.reactive.function.client.WebClientResponseException\$BadRequest"
     instances:
       user-service:
         base-config: default
       notification-service:
         base-config: default
+
+logging:
+  level:
+    org.springframework.cloud.circuitbreaker: DEBUG
+    dev.dmv04.circuitbreaker: DEBUG
 
 spring:
   webflux:
