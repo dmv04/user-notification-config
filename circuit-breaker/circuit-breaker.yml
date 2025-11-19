@@ -6,6 +6,13 @@ services:
       url: http://localhost:8082
 
 resilience4j:
+
+  timelimiter:
+    configs:
+      default:
+        timeoutDuration: 30s
+        cancelRunningFuture: true
+        
   circuitbreaker:
     configs:
       default:
@@ -23,11 +30,6 @@ resilience4j:
         base-config: default
       notification-service:
         base-config: default
-
-spring:
-  webflux:
-    client:
-      response-timeout: 30s
 
 server:
   port: 8084
