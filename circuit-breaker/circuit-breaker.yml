@@ -24,6 +24,7 @@ resilience4j:
         permittedNumberOfCallsInHalfOpenState: 3
         slidingWindowType: COUNT_BASED
         slowCallDurationThreshold: 60s
+        automaticTransitionFromOpenToHalfOpenEnabled: true
         recordExceptions:
           - java.lang.RuntimeException
         ignoreExceptions: []
