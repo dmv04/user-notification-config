@@ -24,6 +24,10 @@ resilience4j:
         permitted-number-of-calls-in-half-open-state: 3
         sliding-window-type: COUNT_BASED
         slow-call-duration-threshold: 60000
+        record-exceptions:
+          - org.springframework.web.reactive.function.client.WebClientResponseException
+          - java.lang.Exception
+        ignore-exceptions: []
         
     instances:
       user-service:
