@@ -16,24 +16,23 @@ resilience4j:
   circuitbreaker:
     configs:
       default:
-        register-health-indicator: true
-        failure-rate-threshold: 50
-        wait-duration-in-open-state: 10s
-        sliding-window-size: 10
-        minimum-number-of-calls: 5
-        permitted-number-of-calls-in-half-open-state: 3
-        sliding-window-type: COUNT_BASED
-        slow-call-duration-threshold: 60000
-        record-exceptions:
-          - org.springframework.web.reactive.function.client.WebClientResponseException
-          - java.lang.Exception
-        ignore-exceptions: []
+        registerHealthIndicator: true
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        slidingWindowSize: 10
+        minimumNumberOfCalls: 5
+        permittedNumberOfCallsInHalfOpenState: 3
+        slidingWindowType: COUNT_BASED
+        slowCallDurationThreshold: 60s
+        recordExceptions:
+          - java.lang.RuntimeException
+        ignoreExceptions: []
         
     instances:
       user-service:
-        base-config: default
+        baseConfig: default
       notification-service:
-        base-config: default
+        baseConfig: default
 
 server:
   port: 8084
