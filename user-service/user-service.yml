@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5432/test_db
+    url: jdbc:postgresql://postgres:5432/user_service_db 
     username: postgres
     password: admin
     driver-class-name: org.postgresql.Driver
@@ -14,7 +14,7 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: kafka:9092
 
   jackson:
     serialization:
@@ -33,7 +33,7 @@ springdoc:
 eureka:
   client:
     service-url:
-      defaultZone: http://localhost:8761/eureka/
+      defaultZone: http://discovery-server:8761/eureka/
 
 resilience4j:
   circuitbreaker:
