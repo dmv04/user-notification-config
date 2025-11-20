@@ -1,9 +1,9 @@
 services:
   services:
     user-service:
-      url: http://localhost:8081
+      url: http://user-service:8081
     notification-service:
-      url: http://localhost:8082
+      url: http://notification-service:8082
 
 resilience4j:
 
